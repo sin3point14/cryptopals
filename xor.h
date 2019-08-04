@@ -20,9 +20,7 @@ string hex_to_string(string hex)
         string byte = hex.substr(i,2);
         char chr = (char) (int)strtol(byte.c_str(), NULL, 16);
         newString.push_back(chr);
-        cout<<(int)chr;
     }
-    cout<<endl;
     return newString;
 }
 pair<string, float> check(string s, char c)
