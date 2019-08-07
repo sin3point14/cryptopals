@@ -1,20 +1,22 @@
 #include<fstream>
-#include"../xor.h"
+#include"../utils/encoding.h"
+#include"../utils/xor.h"
 int main()
 {
     string hex;
     ifstream in("data/chall4.txt");
-    pair<string, float> best, current;
+    pair<char, float> best;
+    string beststring;
     best.second = 0;
     while (getline(in, hex)) 
     {
         string byteArray = hex_to_string(hex);
-        for(int c = 0; c<128 ;c++)
+        auto current = detect_single_byte_xor(byteArray);
+        if(current[0].second > best.second)
         {
-            current = check(byteArray, c);
-            if(best.second < current.second)
-                best = current;
+            best = current[0];
+            beststring = byteArray;
         }
     }
-    cout<<best.first<<best.second<<endl;
+    cout<<single_byte_xor(beststring, best.first).first<<best.second<<endl;
 }

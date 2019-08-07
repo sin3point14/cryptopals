@@ -1,5 +1,6 @@
 #include<iostream>
-#include"../xor.h"
+#include"../utils/encoding.h"
+#include"../utils/xor.h"
 int main(int argc, char *argv[])
 {
     if(argc > 2)
@@ -9,13 +10,6 @@ int main(int argc, char *argv[])
     }
     string hex=argv[1];
     string byteArray = hex_to_string(hex);
-    pair<string, float> best, current;
-    best.second = 0;
-    for(int c=0;int(c)<127;c++)
-    {
-        current = check(byteArray, c);
-        if(best.second < current.second)
-            best = current;
-    }
-    cout<<best.first<<endl<<best.second<<endl;
+    auto vec = detect_single_byte_xor(byteArray);
+    cout<<vec[0].first<<endl<<vec[0].second<<endl<<single_byte_xor(byteArray, vec[0].first).first;
 }
