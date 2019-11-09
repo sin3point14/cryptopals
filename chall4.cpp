@@ -1,6 +1,6 @@
 #include<fstream>
-#include"../utils/encoding.h"
-#include"../utils/xor.h"
+#include"utils/encoding.h"
+#include"utils/xor.h"
 int main()
 {
     string hex;

@@ -1,6 +1,6 @@
 #include<iostream>
-#include"../utils/encoding.h"
-#include"../utils/xor.h"
+#include"utils/encoding.h"
+#include"utils/xor.h"
 int main()
 {
     cout<<hamming_distance("this is a test", "wokka wokka!!!")<<endl;

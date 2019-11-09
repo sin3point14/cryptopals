@@ -1,6 +1,6 @@
 #include<iostream>
-#include"../utils/encoding.h"
-#include"../utils/xor.h"
+#include"utils/encoding.h"
+#include"utils/xor.h"
 int main()
 {
     string plain =R"(Burning 'em, if you ain't quick and nimble

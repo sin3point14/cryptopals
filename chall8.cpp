@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../utils/encoding.h"
+#include "utils/encoding.h"
 #include <vector>
 #include <algorithm>
 struct string_score { 

@@ -1,5 +1,5 @@
 #include<iostream>
-#include"../utils/encoding.h"
+#include"utils/encoding.h"
 using namespace std;
 string pkcs7_padding (string text, int padding){
     int l = padding - text.length() % padding;

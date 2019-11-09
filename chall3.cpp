@@ -1,6 +1,6 @@
 #include<iostream>
-#include"../utils/encoding.h"
-#include"../utils/xor.h"
+#include"utils/encoding.h"
+#include"utils/xor.h"
 int main(int argc, char *argv[])
 {
     if(argc > 2)
