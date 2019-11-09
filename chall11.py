@@ -24,7 +24,10 @@ def encrypt_aes_cbc(plain, key, iv):
     return cipher
 
 def pkcs7_padding(text, block):
-    pad = block - len(text) % block
+    if len(text) % block == 0:
+        pad = block
+    else:
+        pad = block - len(text) % block
     padded = text + bytes([pad])*pad
     return padded
 def oracle(plain):
