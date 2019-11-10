@@ -15,7 +15,8 @@ def generate():
     return iv + cipher
 def oracle5(cipher, iv):
     return validate_pkcs7(decrypt_aes_cbc(cipher,key,iv))
-def pwn_oracle5(cipher):
+    
+def pwn_oracle5(cipher): # small error is that the first byte determined can be 0x1 of form a sequence of ... 0xn 0xn 0xn with padding bytes so it's a 50% chance for correct answer
     chunks, chunk_size = len(cipher), 16
     blocks = [ cipher[i:i+chunk_size] for i in range(0, chunks, chunk_size) ]
     plain = b''
@@ -23,17 +24,18 @@ def pwn_oracle5(cipher):
         curr_block = blocks[i]
         prev_block = bytearray(blocks[i-1])
         curr_pwned = b''
-        prev_block_orig = prev_block
+        prev_block_orig = prev_block.copy()
         for curr_index in reversed(range(16)):
             x = 16-curr_index
-            for b in range(15, curr_index-1, -1):
+            for b in range(15, curr_index, -1):
                 prev_block[b] ^= (x) ^ (x-1)
             for a in range(256):
                 prev_block[curr_index] = a
                 if oracle5(bytes(prev_block) + curr_block, cipher[0:16]):
                     break
-            curr_pwned = bytes([ (16-curr_index) ^ prev_block[curr_index] ^ prev_block_orig[curr_index] ]) + curr_pwned
+            curr_pwned = bytes([ x ^ prev_block[curr_index] ^ prev_block_orig[curr_index] ]) + curr_pwned
+            print(curr_pwned)
         plain = curr_pwned + plain
-    return curr_pwned
+    return plain
 cipher = generate()
 print(pwn_oracle5(cipher))
