@@ -43,6 +43,6 @@ def twist():
             xA ^= a
         MT[i] = MT[(i+m) % n] ^ xA
     index = 0
-
-seed_mt(1337)
-print(extract_number())
+if __name__ == "__main__":
+    seed_mt(1337)
+    print(extract_number())
