@@ -59,11 +59,11 @@ def sha1(plain):
             b = a
             a = temp
 
-            h0 = mod_wrap( h0 + a )
-            h1 = mod_wrap( h1 + b ) 
-            h2 = mod_wrap( h2 + c )
-            h3 = mod_wrap( h3 + d )
-            h4 = mod_wrap( h4 + e )
+        h0 = mod_wrap( h0 + a )
+        h1 = mod_wrap( h1 + b ) 
+        h2 = mod_wrap( h2 + c )
+        h3 = mod_wrap( h3 + d )
+        h4 = mod_wrap( h4 + e )
 
     return '%08x%08x%08x%08x%08x' % (h0, h1, h2, h3, h4)
 
